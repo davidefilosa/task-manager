@@ -4,7 +4,7 @@ import { create } from "zustand";
 type ModalStore = {
   initialData?: Task;
   isOpen: boolean;
-  onOpen: (task: Task) => void;
+  onOpen: (task?: Task) => void;
   onClose: () => void;
 };
 
