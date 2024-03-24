@@ -61,7 +61,7 @@ export const TaskCard = ({ task }: Props) => {
   return (
     <Card className="bg-zinc-800 flex flex-col justify-between rounded-3xl">
       <CardHeader>
-        <CardTitle className="flex items-center justify-between">
+        <CardTitle className="flex items-center justify-between ">
           {task.title}
           {task.isImportant && (
             <TooltipProvider>
