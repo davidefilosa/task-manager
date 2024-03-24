@@ -1,4 +1,4 @@
-import { getTasks } from "@/actions/get-tasks";
+import { getCompletedTasks, getTasks } from "@/actions/get-tasks";
 import TaskList from "@/components/task-lists";
 import { Button } from "@/components/ui/button";
 import {
@@ -12,7 +12,7 @@ import {
 import { Loader } from "lucide-react";
 
 export default async function Home() {
-  const tasks = await getTasks();
+  const tasks = await getCompletedTasks();
   return (
     <div className="flex items-center justify-center min-h-screen p-0 md:p-8">
       <div className="bg-zinc-900 w-full min-h-screen rounded-3xl border border-zinc-700 flex items-center justify-center">
@@ -37,7 +37,7 @@ export default async function Home() {
               </div>
             </SignedOut>
             <SignedIn>
-              <TaskList title="All" tasks={tasks} />
+              <TaskList title="Completed" tasks={tasks} />
             </SignedIn>
           </ClerkLoaded>
         </div>
