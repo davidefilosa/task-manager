@@ -162,6 +162,7 @@ export function FormTask() {
           <Button
             type="submit"
             className="flex items-center gap-x-1 justify-center"
+            disabled={form.formState.isSubmitting}
           >
             {initialData ? (
               <Pencil className="w-4 h-4" />
