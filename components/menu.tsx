@@ -1,20 +1,13 @@
 "use client";
 
 import { cn } from "@/lib/utils";
-import {
-  AlarmClockCheck,
-  CalendarCheck,
-  Check,
-  CircleAlert,
-  Home,
-  ListChecks,
-} from "lucide-react";
+import { AlarmClockCheck, Check, CircleAlert, ListTodo } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
 const routes = [
   {
-    icon: Home,
+    icon: ListTodo,
     href: "/",
     label: "All Tasks",
   },

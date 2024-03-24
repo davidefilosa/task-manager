@@ -81,36 +81,39 @@ export const TaskCard = ({ task }: Props) => {
   };
   return (
     <Card className="bg-zinc-800 flex flex-col justify-between rounded-3xl">
-      <CardHeader>
-        <CardTitle className="flex items-center justify-between ">
-          {task.title}
-          <TooltipProvider>
-            <Tooltip>
-              <TooltipTrigger>
-                <CircleAlert
-                  className={cn(
-                    "w-6 h-6",
-                    task.isImportant
-                      ? "text-yellow-300"
-                      : "text-muted-foreground"
-                  )}
-                  onClick={() => toggleImportant(task.id)}
-                />
-              </TooltipTrigger>
-              <TooltipContent>
-                <p>
-                  {task.isImportant
-                    ? "Set as not important"
-                    : "Set as important"}
-                </p>
-              </TooltipContent>
-            </Tooltip>
-          </TooltipProvider>
-        </CardTitle>
-      </CardHeader>
-      <CardContent>
-        <p>{task.description}</p>
-      </CardContent>
+      <div>
+        <CardHeader>
+          <CardTitle className="flex items-center justify-between ">
+            {task.title}
+            <TooltipProvider>
+              <Tooltip>
+                <TooltipTrigger>
+                  <CircleAlert
+                    className={cn(
+                      "w-6 h-6",
+                      task.isImportant
+                        ? "text-yellow-300"
+                        : "text-muted-foreground"
+                    )}
+                    onClick={() => toggleImportant(task.id)}
+                  />
+                </TooltipTrigger>
+                <TooltipContent>
+                  <p>
+                    {task.isImportant
+                      ? "Set as not important"
+                      : "Set as important"}
+                  </p>
+                </TooltipContent>
+              </Tooltip>
+            </TooltipProvider>
+          </CardTitle>
+        </CardHeader>
+        <CardContent>
+          <p>{task.description}</p>
+        </CardContent>
+      </div>
+
       <CardFooter className="flex flex-col gap-2 items-start">
         <p className="text-sm text-muted-foreground">
           {task.date.toLocaleDateString()}
