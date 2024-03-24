@@ -9,9 +9,6 @@ const AddButton = () => {
   const { onOpen } = useModal();
   return (
     <>
-      <ClerkLoading>
-        <Loader className="h-5 w-5 text-muted-foreground animate-spin" />
-      </ClerkLoading>
       <ClerkLoaded>
         <SignedIn>
           <div
