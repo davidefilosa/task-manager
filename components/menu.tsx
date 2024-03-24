@@ -1,7 +1,14 @@
 "use client";
 
 import { cn } from "@/lib/utils";
-import { CalendarCheck, Check, Home, ListChecks } from "lucide-react";
+import {
+  AlarmClockCheck,
+  CalendarCheck,
+  Check,
+  CircleAlert,
+  Home,
+  ListChecks,
+} from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
@@ -12,7 +19,7 @@ const routes = [
     label: "All Tasks",
   },
   {
-    icon: ListChecks,
+    icon: CircleAlert,
     href: "/important",
     label: "Important!",
     pro: true,
@@ -25,7 +32,7 @@ const routes = [
   },
 
   {
-    icon: CalendarCheck,
+    icon: AlarmClockCheck,
     href: "/to-do",
     label: "Do it Now",
     pro: false,
