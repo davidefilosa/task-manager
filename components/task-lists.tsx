@@ -50,7 +50,7 @@ const TaskList = ({ title, tasks }: Props) => {
         {tasks.map((task) => (
           <TaskCard key={task.id} task={task} />
         ))}
-        <AddCard />
+        <AddCard empty={tasks.length === 0} title={title} />
       </div>
     </div>
   );
