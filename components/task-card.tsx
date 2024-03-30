@@ -115,8 +115,11 @@ export const TaskCard = ({ task }: Props) => {
       </div>
 
       <CardFooter className="flex flex-col gap-2 items-start">
-        <p className="text-sm text-muted-foreground">
-          {task.date.toLocaleDateString()}
+        <p
+          className="text-xs text-muted-foreground cursor-pointer"
+          onClick={() => onOpen(task)}
+        >
+          Due on: {task.date.toDateString()}
         </p>
 
         <div className="flex items-center justify-between w-full">
