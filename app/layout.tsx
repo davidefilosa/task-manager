@@ -8,6 +8,7 @@ import { ClerkProvider } from "@clerk/nextjs";
 import AddButton from "@/components/add-button";
 import { FormModal } from "@/components/modals/form-modal";
 import { Toaster } from "@/components/ui/toaster";
+import ArchivedDrawer from "@/components/archived-drawer";
 
 const roboto = Roboto({
   weight: ["100", "300", "400", "500", "700", "900"],
@@ -31,6 +32,7 @@ export default function RootLayout({
           <body className={roboto.className}>
             <MobileSidebar />
             <AddButton />
+            <ArchivedDrawer />
             <FormModal />
             {children}
             <Toaster />

@@ -21,6 +21,7 @@ model Task{
   date        DateTime
   isCompleted Boolean   @default(false)
   isImportant Boolean   @default(false)
+  isArchived Boolean   @default(false)
 
   createdAt   DateTime  @default(now()) @map("created_at")
   updatedAt   DateTime  @default(now()) @updatedAt @map("updated_at")

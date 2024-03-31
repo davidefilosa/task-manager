@@ -26,3 +26,20 @@ export const editTask = async (values: {
   revalidatePath("/completed");
   revalidatePath("/to-do");
 };
+
+export const editDate = async (values: { id: string; date: Date }) => {
+  const { userId } = auth();
+
+  if (!userId) {
+    throw new Error("Unauthorized");
+  }
+  const { date } = values;
+  await prismadb.task.update({
+    where: { id: values.id },
+    data: { date },
+  });
+  revalidatePath("/");
+  revalidatePath("/important");
+  revalidatePath("/completed");
+  revalidatePath("/to-do");
+};

@@ -10,7 +10,7 @@ import {
   DialogFooter,
 } from "../ui/dialog";
 import { useModal } from "@/store/use-modal";
-import { FormTask } from "../form";
+import { FormTask } from "../task-form";
 
 export const FormModal = () => {
   const [isClient, setIsClient] = useState(false);

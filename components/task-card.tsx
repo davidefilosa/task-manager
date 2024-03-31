@@ -13,6 +13,7 @@ import { Button } from "./ui/button";
 import { completeTask } from "@/actions/complete-tasks";
 import {
   AlarmClockCheck,
+  ArchiveX,
   Check,
   CircleAlert,
   Pencil,
@@ -40,6 +41,8 @@ import {
 } from "./ui/tooltip";
 import { setImportant } from "@/actions/set-important";
 import { cn } from "@/lib/utils";
+import { DateForm } from "./date-form";
+import { toggleArchived } from "@/actions/archived-tasks";
 
 type Props = {
   task: Task;
@@ -70,6 +73,17 @@ export const TaskCard = ({ task }: Props) => {
     }
   };
 
+  const onToggleArchivied = async (taskId: string) => {
+    try {
+      setPending(true);
+      await toggleArchived(taskId);
+      toast({ description: "Task archivied", variant: "default" });
+      setPending(false);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   const onDelete = async (taskId: string) => {
     try {
       await deleteTask(taskId);
@@ -83,8 +97,11 @@ export const TaskCard = ({ task }: Props) => {
     <Card className="bg-zinc-800 flex flex-col justify-between rounded-3xl">
       <div>
         <CardHeader>
-          <CardTitle className="flex items-center justify-between ">
-            {task.title}
+          <CardTitle className="flex items-start justify-between ">
+            <div className="flex flex-col gap-1">
+              {task.title}
+              <DateForm initialData={task} />
+            </div>
             <TooltipProvider>
               <Tooltip>
                 <TooltipTrigger>
@@ -115,13 +132,6 @@ export const TaskCard = ({ task }: Props) => {
       </div>
 
       <CardFooter className="flex flex-col gap-2 items-start">
-        <p
-          className="text-xs text-muted-foreground cursor-pointer"
-          onClick={() => onOpen(task)}
-        >
-          Due on: {task.date.toDateString()}
-        </p>
-
         <div className="flex items-center justify-between w-full">
           <TooltipProvider>
             <Tooltip>
@@ -151,11 +161,20 @@ export const TaskCard = ({ task }: Props) => {
             </Tooltip>
           </TooltipProvider>
 
-          <div className="flex gap-4">
+          <div className="flex gap-0 md:gap-4 items-center">
             <Pencil
               className="w-4 h-4 cursor-pointer"
               onClick={() => onOpen(task)}
             />
+            <Button
+              size="icon"
+              variant="ghost"
+              onClick={() => onToggleArchivied(task.id)}
+              disabled={pending}
+            >
+              <ArchiveX className="w-4 h-4" />
+            </Button>
+
             <AlertDialog>
               <AlertDialogTrigger>
                 <Trash className="w-4 h-4 cursor-pointer" />

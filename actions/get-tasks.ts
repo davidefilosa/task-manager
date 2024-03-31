@@ -12,7 +12,7 @@ export const getTasks = async () => {
   }
 
   const tasks = await prismadb.task.findMany({
-    where: { userId },
+    where: { userId, isArchived: false },
     orderBy: { createdAt: "desc" },
   });
   revalidatePath("/");
@@ -30,7 +30,7 @@ export const getCompletedTasks = async () => {
   }
 
   const tasks = await prismadb.task.findMany({
-    where: { userId, isCompleted: true },
+    where: { userId, isCompleted: true, isArchived: false },
     orderBy: { createdAt: "desc" },
   });
   revalidatePath("/");
@@ -48,7 +48,7 @@ export const getImportantTasks = async () => {
   }
 
   const tasks = await prismadb.task.findMany({
-    where: { userId, isImportant: true },
+    where: { userId, isImportant: true, isArchived: false },
     orderBy: { createdAt: "desc" },
   });
   revalidatePath("/");
@@ -66,9 +66,28 @@ export const getToDos = async () => {
   }
 
   const tasks = await prismadb.task.findMany({
-    where: { userId, isCompleted: false },
+    where: { userId, isCompleted: false, isArchived: false },
     orderBy: { createdAt: "desc" },
   });
+  revalidatePath("/");
+  revalidatePath("/important");
+  revalidatePath("/completed");
+  revalidatePath("/to-do");
+  return tasks;
+};
+
+export const getArchivedTasks = async () => {
+  const { userId } = auth();
+
+  if (!userId) {
+    return [];
+  }
+
+  const tasks = await prismadb.task.findMany({
+    where: { userId, isArchived: true },
+    orderBy: { createdAt: "desc" },
+  });
+
   revalidatePath("/");
   revalidatePath("/important");
   revalidatePath("/completed");
