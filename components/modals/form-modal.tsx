@@ -14,7 +14,7 @@ import { FormTask } from "../task-form";
 
 export const FormModal = () => {
   const [isClient, setIsClient] = useState(false);
-  const { isOpen, onClose } = useModal();
+  const { isOpen, onClose, initialData } = useModal();
 
   useEffect(() => setIsClient(true), []);
 
@@ -28,7 +28,7 @@ export const FormModal = () => {
         <DialogHeader>
           <div className="flex items-center w-full justify-center mb-5"></div>
           <DialogTitle className="text-center font-bold text-xl">
-            Create a New Task
+            {initialData ? "Edit Task" : "Create a New Task"}
           </DialogTitle>
         </DialogHeader>
         <FormTask />

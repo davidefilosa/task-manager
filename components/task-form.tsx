@@ -164,7 +164,7 @@ export function FormTask() {
         <div className="w-full flex justify-end items-end">
           <Button
             type="submit"
-            className="flex items-center gap-x-1 justify-center"
+            className="flex items-center gap-x-2 justify-center"
             disabled={form.formState.isSubmitting}
           >
             {initialData ? (
@@ -172,7 +172,7 @@ export function FormTask() {
             ) : (
               <Plus className="w-4 h-4" />
             )}
-            {initialData ? "Edit Task" : "Create Task"}
+            {initialData ? "Edit" : "Create"}
           </Button>
         </div>
       </form>

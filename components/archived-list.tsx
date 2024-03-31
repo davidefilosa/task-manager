@@ -10,7 +10,7 @@ const ArchivedList = ({ archivedTasks }: Props) => {
   if (archivedTasks.length === 0) {
     return (
       <div className="w-full flex items-center justify-center text-muted-foreground my-12">
-        You do not have any archivied tasks
+        You do not have any archived tasks
       </div>
     );
   }

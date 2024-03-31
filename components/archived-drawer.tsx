@@ -13,6 +13,7 @@ import { Button } from "./ui/button";
 import { getArchivedTasks } from "@/actions/get-tasks";
 import { Archive } from "lucide-react";
 import ArchivedList from "./archived-list";
+import { cn } from "@/lib/utils";
 
 const ArchivedDrawer = async () => {
   const archiviedTasks = await getArchivedTasks();
@@ -21,12 +22,19 @@ const ArchivedDrawer = async () => {
       <Drawer>
         <DrawerTrigger>
           <div className="z-10 p-2 cursor-pointer rounded-full hover:opacity-75 transition-all bg-zinc-800 flex items-center justify-center border border-zinc-700">
-            <Archive className="w-8 h-8 text-green-500" />
+            <Archive
+              className={cn(
+                "w-8 h-8",
+                archiviedTasks.length === 0
+                  ? "text-muted-foreground"
+                  : "text-green-500"
+              )}
+            />
           </div>
         </DrawerTrigger>
         <DrawerContent>
           <DrawerHeader>
-            <DrawerTitle>Archivied Tasks</DrawerTitle>
+            <DrawerTitle>Archived Tasks</DrawerTitle>
           </DrawerHeader>
           <ArchivedList archivedTasks={archiviedTasks} />
           <DrawerFooter>
