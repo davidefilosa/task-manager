@@ -14,24 +14,28 @@ import { getArchivedTasks } from "@/actions/get-tasks";
 import { Archive } from "lucide-react";
 import ArchivedList from "./archived-list";
 import { cn } from "@/lib/utils";
+import { SignedIn } from "@clerk/nextjs";
 
 const ArchivedDrawer = async () => {
   const archiviedTasks = await getArchivedTasks();
   return (
     <div className="fixed bottom-4 right-8 md:right-12">
       <Drawer>
-        <DrawerTrigger>
-          <div className="z-10 p-2 cursor-pointer rounded-full hover:opacity-75 transition-all bg-zinc-800 flex items-center justify-center border border-zinc-700">
-            <Archive
-              className={cn(
-                "w-8 h-8",
-                archiviedTasks.length === 0
-                  ? "text-muted-foreground"
-                  : "text-green-500"
-              )}
-            />
-          </div>
-        </DrawerTrigger>
+        <SignedIn>
+          <DrawerTrigger>
+            <div className="z-10 p-2 cursor-pointer rounded-full hover:opacity-75 transition-all bg-zinc-800 flex items-center justify-center border border-zinc-700">
+              <Archive
+                className={cn(
+                  "w-8 h-8",
+                  archiviedTasks.length === 0
+                    ? "text-muted-foreground"
+                    : "text-green-500"
+                )}
+              />
+            </div>
+          </DrawerTrigger>
+        </SignedIn>
+
         <DrawerContent>
           <DrawerHeader>
             <DrawerTitle>Archived Tasks</DrawerTitle>
